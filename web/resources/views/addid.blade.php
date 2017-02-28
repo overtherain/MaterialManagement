@@ -13,8 +13,8 @@
                             <!-- 第一级分类 -->
                             <div class="dropdown col-xs-2">
                                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">
-                                    第一码(分类)
-                                    <span class="caret">&nbsp;</span>
+                                    <span id='text'>第一码(分类)</span>
+                                    <span class="caret"></span>
                                 </button>
                                 <ul aria-labelledby="dropdownMenu1" class="dropdown-menu" role="menu">
                                     @foreach ($types as $type)
@@ -27,8 +27,8 @@
                             <!-- 第二级分类 -->
                             <div class="dropdown col-xs-2">
                                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2" type="button">
-                                    第二码(型号)
-                                    <span class="caret">&nbsp;</span>
+                                    <span id='text'>第二码(型号)</span>
+                                    <span class="caret"></span>
                                 </button>
                                 <ul aria-labelledby="dropdownMenu2" class="dropdown-menu" role="menu">
                                     @foreach ($ictypes as $ictype)
@@ -49,8 +49,8 @@
                             
                             <div class="dropdown col-xs-2">
                                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" type="button">
-                                    第三码(厂商)
-                                    <span class="caret">&nbsp;</span>
+                                    <span id='text'>第三码(厂商)</span>
+                                    <span class="caret"></span>
                                 </button>
                                 <ul aria-labelledby="dropdownMenu3" class="dropdown-menu" role="menu">
                                     @foreach ($types as $type)
@@ -64,7 +64,7 @@
                             <div class="dropdown col-xs-2">
                                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu4" type="button">
                                     第四码(流水码)
-                                    <span class="caret">&nbsp;</span>
+                                    <span class="caret"></span>
                                 </button>
                                 <ul aria-labelledby="dropdownMenu4" class="dropdown-menu" role="menu">
                                     @foreach ($types as $type)
@@ -78,9 +78,18 @@
                         <div>
                             &nbsp;
                         </div>
-                        <!-- 额外添加信息 -->
-                        <form class="form-horizontal">
-                            <div class="row">
+                        <div class="row">
+                            <div class="controls col-sm-3">
+                                <input type="text" id="material_num_input" class="form-control" value="" readonly>
+                            </div>
+                        </div>
+                        <div>
+                            &nbsp;
+                        </div>
+                        
+                        <div class="row">
+                            <!-- 额外添加信息 -->
+                            <div class="control-group">
                                 <div class="col-xs-2">
                                     <input type="text" id="author_input" class="form-control" placeholder="修改人姓名" value="">
                                 </div>
@@ -91,22 +100,11 @@
                                     <input type="text" id="note_input" class="form-control" placeholder="备注" value="">
                                 </div>
                             </div>
-                        </form>
-                        <div>
-                            &nbsp;
-                        </div>
-                        
-                        <div class="control-group">
-                            <div class="controls col-sm-3">
-                                <div class="controls ">
-                                    <input type="text" id="material_num_input" class="form-control" value="" readonly>
-                                </div>
-                                <div>
-                                    &nbsp;
-                                </div>
-                                <div class="controls ">
-                                    <button type="submit" id="bt_add" class="btn btn-primary btn-block">添加</button>
-                                </div>
+                            <div>
+                                &nbsp;
+                            </div>
+                            <div class="controls col-sm-2">
+                                <button type="submit" id="bt_add" class="btn btn-primary btn-block">添加</button>
                             </div>
                         </div>
                     </form>
