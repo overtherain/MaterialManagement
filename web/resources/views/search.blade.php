@@ -36,7 +36,7 @@
                         
                         <div class="control-group ">
                             <div class="controls col-sm-2">
-                                <button type="button" id="bt_search" class="btn btn-primary btn-block">搜索</button>
+                                <button type="submit" id="bt_search" class="btn btn-primary btn-block">搜索</button>
                             </div>
                         </div>
                     </form>

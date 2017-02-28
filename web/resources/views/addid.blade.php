@@ -105,7 +105,7 @@
                                     &nbsp;
                                 </div>
                                 <div class="controls ">
-                                    <button type="button" id="bt_add" class="btn btn-primary btn-block">添加</button>
+                                    <button type="submit" id="bt_add" class="btn btn-primary btn-block">添加</button>
                                 </div>
                             </div>
                         </div>
@@ -153,4 +153,8 @@
         </div>
     </div>
 </div>
+
+<script>
+
+</script>
 @endsection
