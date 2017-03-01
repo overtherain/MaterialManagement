@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <!--<link href="/css/app.css" rel="stylesheet">-->
-    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -46,7 +46,7 @@
                         @if (Auth::guest())
                             &nbsp;
                         @elseif(Auth::user()->name == 'admin')
-                            <li><a href="{{ url('/home') }}">已申请物料信息</a></li>
+                            <!--<li><a href="{{ url('/home') }}">已申请物料信息</a></li>-->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" 
                                             data-toggle="dropdown" 

@@ -40,3 +40,6 @@ Route::get('/edittable/edittable5', 'EditTable\EditTableController1@index');
 Route::get('/search', 'searchController@index');
 
 Route::get('/delete', 'deleteController@index');
+
+
+

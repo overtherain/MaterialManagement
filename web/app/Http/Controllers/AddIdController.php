@@ -27,11 +27,14 @@ class addidController extends Controller
         $finishedproducttypes = DB::table('finishedproducttype')->get();
         $dummytypes = DB::table('dummytype')->get();
         
+        $pipelines = DB::table('pipelines')->get();
+        
         $day = date("Y-m-d%");
         $date = "$day";
         //dd($day);
         $materialitems = DB::table('materialitems')->where('AddTime','LIKE',$date)->orderBy('AddTime', 'desc')->paginate(10);
         //$materialitems = DB::table('materialitems')->paginate(10);
+        
         return view('addid',[
             'types'=>$types,
             'ictypes'=>$ictypes,
@@ -44,6 +47,7 @@ class addidController extends Controller
             'semifinishedproducttypes'=>$semifinishedproducttypes,
             'finishedproducttypes'=>$finishedproducttypes,
             'dummytypes'=>$dummytypes,
+            'pipelines'=>$pipelines,
             
             'materialitems'=>$materialitems
         ]);
