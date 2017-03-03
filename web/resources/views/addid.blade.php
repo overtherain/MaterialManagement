@@ -2,6 +2,9 @@
 
 @section('content')
 
+<script src="http://cdn.staticfile.org/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/jquery.cxselect.js"></script>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-offset-0">

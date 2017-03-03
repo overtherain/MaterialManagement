@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/addid', 'AddIdController@index');
 
+Route::get('/addtest', 'AddIdController@test');
+
 Route::get('/help', 'HelpController@index');
 
 Route::get('/help/out2xls', 'HelpController@out2xls');
