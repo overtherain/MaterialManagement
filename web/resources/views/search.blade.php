@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-offset-0">
             <div class="panel panel-default">
-                <div class="panel-heading">查找条件(可多选)</div>
+                <div class="panel-heading">查找条件</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('search.result') }}">

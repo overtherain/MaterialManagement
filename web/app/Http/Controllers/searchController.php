@@ -37,7 +37,13 @@ class searchController extends Controller
         if($materialid != null){
             DB::insert('insert into searchresult select * from  materialitems where materialitems.Material_num = "'.$materialid.'"');
         }else if($date){
-            DB::insert('insert into searchresult select * from  materialitems where materialitems.AddTime like "'.$date.'"');
+            DB::insert('insert into searchresult select * from  materialitems where materialitems.AddTime like "'.$date.'%"');
+        }else if($author != null){
+            DB::insert('insert into searchresult select * from  materialitems where materialitems.Author like "%'.$author.'%"');
+        }else if($description != null){
+            DB::insert('insert into searchresult select * from  materialitems where materialitems.Description like "%'.$description.'%"');
+        }else if($notes != null){
+            DB::insert('insert into searchresult select * from  materialitems where materialitems.Notes like "%'.$notes.'%"');
         }
         
         return redirect('search');
