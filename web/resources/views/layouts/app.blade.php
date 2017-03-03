@@ -46,7 +46,6 @@
                         @if (Auth::guest())
                             &nbsp;
                         @elseif(Auth::user()->name == 'admin')
-                            <!--<li><a href="{{ url('/home') }}">已申请物料信息</a></li>-->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" 
                                             data-toggle="dropdown" 
@@ -68,16 +67,15 @@
                             <li><a href="{{ url('/addid') }}">物料编号申请</a></li>
                             
                         @else
-                            <li><a href="{{ url('/home') }}">已申请物料信息</a></li>
                             <li><a href="{{ url('/addid') }}">物料编号申请</a></li>
                         @endif
-                            <!--<li><a href="{{ url('/help') }}">帮助</a></li>-->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">帮助<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/help') }}">帮助1</a>
-                                        <a href="{{ url('/help') }}">帮助2</a>
+                                        <a href="{{ url('/help/out2xls') }}">导出excel表单</a>
+                                        <a href="{{ url('/help/rules') }}">编码规则</a>
+                                        <a href="{{ url('/help') }}">帮助</a>
                                     </li>
                                 </ul>
                             </li>

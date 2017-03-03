@@ -8,32 +8,29 @@
                 <div class="panel-heading">查找条件(可多选)</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal">
-                        <div class="row">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('search.result') }}">
+                        {{ csrf_field() }}
+                        <div class="control-group">
                             <div class="col-xs-2">
-                                <input type="text" id="id_input" class="form-control" placeholder="Material_num" value="">
+                                <input type="text" id="id_input" name="id_input" class="form-control" placeholder="Material_num" value="">
                             </div>
                             <div class="col-xs-2">
-                                <input type="text" id="at_input" class="form-control" placeholder="Author" value="">
+                                <input type="text" id="ah_input" name="ah_input" class="form-control" placeholder="Author" value="">
                             </div>
                             <div class="col-xs-3">
-                                <input type="text" id="dp_input" class="form-control" placeholder="Description" value="">
+                                <input type="text" id="dp_input" name="dp_input" class="form-control" placeholder="Description" value="">
                             </div>
                             <div class="col-xs-2">
-                                <input type="text" id="nt_input" class="form-control" placeholder="Notes" value="">
+                                <input type="text" id="nt_input" name="nt_input" class="form-control" placeholder="Notes" value="">
                             </div>
-                            <!--<div class="col-xs-2">
-                                <input type="text" class="form-control" placeholder="AddTime">
-                            </div>-->
-                            <div class="form-group">
-                                <div class="input-group date form_date col-md-2" id="dt_input" data-date="2017-01-01" data-date-format="yyyy-mm-dd" >
-                                    <input class="form-control" size="14" type="text" placeholder="AddTime" value="" readonly>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                </div>
+                            <div class="input-group date form_date col-xs-2" id="datetime" data-date="2017-01-01" data-date-format="yyyy-mm-dd" >
+                                <input class="form-control" size="14" type="text" placeholder="AddTime" value="" readonly >
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
+                            <input type="text" id="mirror_date" name="mirror_date" value="" readonly hidden>
                         </div>
-                        
+                        <div>&nbsp;</div>
                         <div class="control-group ">
                             <div class="controls col-sm-2">
                                 <button type="submit" id="bt_search" class="btn btn-primary btn-block">搜索</button>
@@ -92,7 +89,8 @@
         todayHighlight: 1,
         startView: 2,
         minView: 2,
-        forceParse: 1
+        forceParse: 1,
+        linkField:'mirror_date',
     });
 </script>
 

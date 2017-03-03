@@ -16,4 +16,14 @@ class helpController extends Controller
     {
         return view('help');
     }
+    
+    public function out2xls()
+    {
+        return view('help/out2xls');
+    }
+    
+    public function rules()
+    {
+        return view('help/rules');
+    }
 }

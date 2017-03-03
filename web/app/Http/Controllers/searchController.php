@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use Request;
 use App\Http\Controllers\Controller;
 use DB;
 
@@ -15,7 +16,31 @@ class searchController extends Controller
     
     public function index()
     {
-        $materialitems = DB::table('materialitems')->paginate(10);
+        $materialitems = DB::table('searchresult')->paginate(10);
         return view('search',['materialitems' => $materialitems]);
     }
+    
+    public function showresult(Request $request)
+    {
+        $tmp = -1;
+        $searchs = null;
+        
+        $materialid = Request::get('id_input');
+        $author = Request::get('ah_input');
+        $description = Request::get('dp_input');
+        $notes = Request::get('nt_input');
+        $datetime = Request::get('mirror_date');
+        $date = substr($datetime, 0, 10);
+        
+        DB::table('searchresult')->delete();
+        
+        if($materialid != null){
+            DB::insert('insert into searchresult select * from  materialitems where materialitems.Material_num = "'.$materialid.'"');
+        }else if($date){
+            DB::insert('insert into searchresult select * from  materialitems where materialitems.AddTime like "'.$date.'"');
+        }
+        
+        return redirect('search');
+    }
+    
 }
