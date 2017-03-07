@@ -27,6 +27,12 @@ Route::get('/addid', 'AddIdController@index');
 
 Route::get('/addtest', 'AddIdController@test');
 
+Route::get('/addtest/getid1', 'AddIdController@getid1');
+
+Route::get('/addtest/getid2', 'AddIdController@getid2');
+
+Route::get('/addtest/getid3', 'AddIdController@getid3');
+
 Route::get('/help', 'HelpController@index');
 
 Route::get('/help/out2xls', 'HelpController@out2xls');

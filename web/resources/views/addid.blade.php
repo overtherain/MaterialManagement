@@ -3,7 +3,7 @@
 @section('content')
 
 <script src="http://cdn.staticfile.org/jquery/1.11.3/jquery.min.js"></script>
-<script src="/js/jquery.cxselect.js"></script>
+
 
 <div class="container">
     <div class="row">
@@ -21,41 +21,43 @@
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
                                 @foreach ($types as $type)
-                                <li role="presentation" >
+                                <li role="presentation">
                                     <!--<a href="{{ url('/addid/'.$type->TypeID).'' }}" role="menuitem" tabindex="-1" onClick="settype1('{{$type->TypeID}}')">{{$type->TypeName}}</a>-->
-                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('1','{{$type->TypeValue}}')">{{$type->TypeName}}</a>
+                                    <a href="#" id="type1" name="type1" role="menuitem" tabindex="-1" onClick="settype('1','{{$type->TypeValue}}')" >{{$type->TypeValue}} ({{$type->TypeName}})</a>
                                 </li>
                                 @endforeach
                             </ul>
                         </div>
                         <!-- 第二级分类 -->
                         <div class="dropdown col-xs-4" id="dropdown_type2" >
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2" type="button" onClick="gettype('1');gettype('2')">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2" type="button" >
                                 <span class="placeholder">第二码(型号)</span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" >
                                 @foreach ($ictypes as $ictype)
                                 <li role="presentation">
-                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('2','{{$ictype->ICID}}')">{{$ictype->ICName}}</a>
+                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('2','{{$ictype->ICValue}}')" >{{$ictype->ICValue}} ({{$ictype->ICName}})</a>
                                 </li>
                                 @endforeach
                             </ul>
                         </div>
                         <!-- 第三级分类 -->
+                        
                         <div class="dropdown col-xs-2" id="dropdown_type3">
                             <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" type="button">
                                 <span class="placeholder">第三码(厂商)</span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
-                                @foreach ($types as $type)
+                                @foreach ($passiveeletypes as $passiveeletype)
                                 <li role="presentation">
-                                    <a href="#" role="menuitem" tabindex="-1">{{$type->TypeName}}</a>
+                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('3','{{$passiveeletype->PassiveValue}}')" >{{$passiveeletype->PassiveValue}} ({{$passiveeletype->PassiveName}})</a>
                                 </li>
                                 @endforeach
                             </ul>
                         </div>
+                        
                         <!-- 第四级分类 -->
                         <div class="dropdown col-xs-2" id="dropdown_type4">
                             <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu4" type="button">
@@ -65,7 +67,22 @@
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu4">
                                 @foreach ($pipelines as $pipeline)
                                 <li role="presentation">
-                                    <a href="#" role="menuitem" tabindex="-1">{{$pipeline->PipelinesID}}</a>
+                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('4','{{$pipeline->PipelinesValue}}')" >{{$pipeline->PipelinesValue}} ({{$pipeline->PipelinesID}})</a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        
+                        <!-- 第五级分类 -->
+                        <div class="dropdown col-xs-2" id="dropdown_type5">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu5" type="button">
+                                <span class="placeholder">第五码(流水码)</span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu5">
+                                @foreach ($pipelines as $pipeline)
+                                <li role="presentation">
+                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('5','{{$pipeline->PipelinesValue}}')" >{{$pipeline->PipelinesValue}} ({{$pipeline->PipelinesID}})</a>
                                 </li>
                                 @endforeach
                             </ul>
@@ -147,54 +164,84 @@
 
 <script type="text/javascript">
 
-var type1 = -1;
-var type2 = -1;
-var type3 = -1;
-var type4 = -1;
+var gettype1 = -1;
+var gettype2 = -1;
+var gettype3 = -1;
+var gettype4 = -1;
+var gettype5 = -1;
 
 function settype(id, value){
     switch(id){
         case "1":
-            type1 = value;
-            type2 = -1;
-            type3 = -1;
-            type4 = -1;
-            document.getElementById("material_num_input").value = type1;
+            gettype1 = value;
+            gettype2 = -1;
+            gettype3 = -1;
+            gettype4 = -1;
+            gettype5 = -1;
+            document.getElementById("material_num_input").value = gettype1;
             break; 
         case "2":
-            type2 = value;
-            type3 = -1;
-            type4 = -1;
-            document.getElementById("material_num_input").value = type1 + type2;
+            gettype2 = value;
+            gettype3 = -1;
+            gettype4 = -1;
+            gettype5 = -1;
+            document.getElementById("material_num_input").value = gettype1 + gettype2;
             break;
         case "3":
-            type3 = value;
-            type4 = -1;
+            gettype3 = value;
+            gettype4 = -1;
+            gettype5 = -1;
+            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3;
             break;
         case "4":
-            type4 = value;
+            gettype4 = value;
+            gettype5 = -1;
+            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4;
+        case "5":
+            gettype5 = value;
+            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4 + gettype5;
             break;
         default:;
     }
-    alert(type1 + ", " + type2 + ", " + type3 + ", " +type4);
+    //alert(gettype1 + ", " + gettype2 + ", " + gettype3 + ", " + gettype4);
 }
 function gettype(id){
     switch(id){
         case "1":
-            alert(type1);
+            alert(gettype1);
             break; 
         case "2":
-            alert(type2);
+            alert(gettype2);
             break;
         case "3":
-            alert(type3);
+            alert(gettype3);
             break;
         case "4":
-            alert(type4);
+            alert(gettype4);
             break;
         default:;
     }
 }
+
+function settype2(id){
+    switch(id){
+        case "1":
+            alert('11');
+            break; 
+        case "2":
+            alert('22');
+            break;
+        case "3":
+            alert('33');
+            break;
+        case "4":
+            alert('44');
+            break;
+        default:;
+    }
+}
+
+
 
 //begin 响应下拉菜单
 function customDropDown(ele){
@@ -230,8 +277,9 @@ customDropDown.prototype={
 $(document).ready(function(){
     var type1=new customDropDown($("#dropdown_type1"));
     var type2=new customDropDown($("#dropdown_type2"));
-    var type1=new customDropDown($("#dropdown_type3"));
-    var type2=new customDropDown($("#dropdown_type4"));
+    var type3=new customDropDown($("#dropdown_type3"));
+    var type4=new customDropDown($("#dropdown_type4"));
+    var type5=new customDropDown($("#dropdown_type5"));
 });
 //end
 </script>

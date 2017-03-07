@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Log;
 
 class addidController extends Controller
 {
@@ -53,7 +54,128 @@ class addidController extends Controller
         ]);
     }
     
+    public function getid1()
+    {
+        $data = array();
+        $types = DB::table('type')->get();
+        foreach($types as $type=>$a){
+            $data[$type]['value'] = $a->TypeValue;
+            $data[$type]['name'] = $a->TypeName;
+        }
+        return response()->json(['status'=>1,'data'=>$data]);
+    }
     
+    public function getid2()
+    {
+        $type = $_GET['typeid1'];
+        $data = array();
+        /*$ictypes = DB::table('ictype')->get();
+        foreach($ictypes as $ictype=>$a){
+            $data[$ictype]['value'] = $a->ICValue;
+            $data[$ictype]['name'] = $a->ICName;
+        }
+        log::info($data);
+        return response()->json(['status'=>1,'data'=>$data]);*/
+        //Log::info($tmp);
+        switch($type){
+            case "I":
+                Log::info($type);
+                $ictypes = DB::table('ictype')->get();
+                foreach($ictypes as $ictype=>$b){
+                    $data[$ictype]['value'] = $b->ICValue;
+                    $data[$ictype]['name'] = $b->ICName;
+                }
+                log::info($data);
+                break;
+            case 'P':
+                Log::info($type);
+                $passiveeletypes = DB::table('passiveeletype')->get();
+                foreach($passiveeletypes as $passiveeletype=>$a){
+                    $data[$passiveeletype]['value'] = $a->PassiveValue;
+                    $data[$passiveeletype]['name'] = $a->PassiveName;
+                }
+                log::info($data);
+                break;
+            case 'A':
+                Log::info($type);
+                $activeeletypes = DB::table('activeeletype')->get();
+                foreach($activeeletypes as $activeeletype=>$a){
+                    $data[$activeeletype]['value'] = $a->ActiveValue;
+                    $data[$activeeletype]['name'] = $a->ActiveName;
+                }
+                log::info($data);
+                break;
+            case 'E':
+                Log::info($type);
+                $electricaltypes = DB::table('electricaltype')->get();
+                foreach($electricaltypes as $electricaltype=>$a){
+                    $data[$electricaltype]['value'] = $a->ElectricalValue;
+                    $data[$electricaltype]['name'] = $a->ElectricalName;
+                }
+                log::info($data);
+                break;
+            case 'M':
+                Log::info($type);
+                $mechanismstypes = DB::table('mechanismstype')->get();
+                foreach($mechanismstypes as $mechanismstype=>$a){
+                    $data[$mechanismstype]['value'] = $a->MechanismsValue;
+                    $data[$mechanismstype]['name'] = $a->MechanismsName;
+                }
+                log::info($data);
+                break;
+            case 'B':
+                Log::info($type);
+                $partstypes = DB::table('partstype')->get();
+                foreach($partstypes as $partstype=>$a){
+                    $data[$partstype]['value'] = $a->PartsValue;
+                    $data[$partstype]['name'] = $a->PartsName;
+                }
+                log::info($data);
+                break;
+            case 'S':
+                Log::info($type);
+                $semifinishedproducttypes = DB::table('semifinishedproducttype')->get();
+                foreach($semifinishedproducttypes as $semifinishedproducttype=>$a){
+                    $data[$semifinishedproducttype]['value'] = $a->SFPValue;
+                    $data[$semifinishedproducttype]['name'] = $a->SFPName;
+                }
+                log::info($data);
+                break;
+            case 'F':
+                Log::info($type);
+                $finishedproducttypes = DB::table('finishedproducttype')->get();
+                foreach($finishedproducttypes as $finishedproducttype=>$a){
+                    $data[$finishedproducttype]['value'] = $a->FPValue;
+                    $data[$finishedproducttype]['name'] = $a->FPName;
+                }
+                break;
+            case 'D':
+                Log::info($type);
+                $dummytypes = DB::table('dummytype')->get();
+                foreach($dummytypes as $dummytype=>$a){
+                    $data[$dummytype]['value'] = $a->DummyValue;
+                    $data[$dummytype]['name'] = $a->DummyName;
+                }
+                break;
+            default:
+                break;
+        }
+        
+        return response()->json(['status'=>1,'data'=>$data]);
+    }
+    
+    public function getid3()
+    {
+        $type = $_GET['typeid2'];
+        //$type2 = $_GET['type2'];
+        $data = array();
+        $types = DB::table('type')->get();
+        foreach($types as $type=>$a){
+            $data[$type]['value'] = $a->TypeValue;
+            $data[$type]['name'] = $a->TypeName;
+        }
+        return response()->json(['status'=>1,'data'=>$data]);
+    }
     
     public function index()
     {
