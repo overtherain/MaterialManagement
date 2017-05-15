@@ -13,87 +13,13 @@
 
                 <div class="panel-body">
                     <div class="form-group">
-                        <!-- 第一级分类 -->
-                        <div class="dropdown col-xs-2" id="dropdown_type1" >
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button" >
-                                <span class="placeholder">第一码(分类)</span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" >
-                                @foreach ($types as $type)
-                                <li role="presentation">
-                                    <!--<a href="{{ url('/addid/'.$type->TypeID).'' }}" role="menuitem" tabindex="-1" onClick="settype1('{{$type->TypeID}}')">{{$type->TypeName}}</a>-->
-                                    <a href="#" id="type1" name="type1" role="menuitem" tabindex="-1" onClick="settype('1','{{$type->TypeValue}}')" >{{$type->TypeValue}} ({{$type->TypeName}})</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <!-- 第二级分类 -->
-                        <div class="dropdown col-xs-4" id="dropdown_type2" >
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2" type="button" >
-                                <span class="placeholder">第二码(型号)</span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" >
-                                @foreach ($ictypes as $ictype)
-                                <li role="presentation">
-                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('2','{{$ictype->ICValue}}')" >{{$ictype->ICValue}} ({{$ictype->ICName}})</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <!-- 第三级分类 -->
                         
-                        <div class="dropdown col-xs-2" id="dropdown_type3">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" type="button">
-                                <span class="placeholder">第三码(厂商)</span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
-                                @foreach ($passiveeletypes as $passiveeletype)
-                                <li role="presentation">
-                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('3','{{$passiveeletype->PassiveValue}}')" >{{$passiveeletype->PassiveValue}} ({{$passiveeletype->PassiveName}})</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        
-                        <!-- 第四级分类 -->
-                        <div class="dropdown col-xs-2" id="dropdown_type4">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu4" type="button">
-                                <span class="placeholder">第四码(流水码)</span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu4">
-                                @foreach ($pipelines as $pipeline)
-                                <li role="presentation">
-                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('4','{{$pipeline->PipelinesValue}}')" >{{$pipeline->PipelinesValue}} ({{$pipeline->PipelinesID}})</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        
-                        <!-- 第五级分类 -->
-                        <div class="dropdown col-xs-2" id="dropdown_type5">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu5" type="button">
-                                <span class="placeholder">第五码(流水码)</span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu5">
-                                @foreach ($pipelines as $pipeline)
-                                <li role="presentation">
-                                    <a href="#" role="menuitem" tabindex="-1" onClick="settype('5','{{$pipeline->PipelinesValue}}')" >{{$pipeline->PipelinesValue}} ({{$pipeline->PipelinesID}})</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
                     </div>
                     <br></br>
                     <form class="form-horizontal" role="form" method="POST" action="">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <div class="controls col-sm-3">
-                                <!--<a type="input" id="material_num_input" class="form-control" value="gettype('1') gettype('2') gettype('3') gettype('4')" readonly></a>-->
                                 <input type="text" id="material_num_input" class="form-control" value="" readonly>
                             </div>
                         </div>
