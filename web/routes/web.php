@@ -24,29 +24,19 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/addid', 'AddIdController@index');
-
-Route::get('/addtest', 'AddIdController@test');
-
-Route::get('/addtest/getid1', 'AddIdController@getid1');
-
-Route::get('/addtest/getid2', 'AddIdController@getid2');
-
-Route::get('/addtest/getid3', 'AddIdController@getid3');
+Route::get('/addid/getid1', 'AddIdController@getid1');
+Route::get('/addid/getid2', 'AddIdController@getid2');
+Route::get('/addid/getid3', 'AddIdController@getid3');
+Route::post('/addid/store', 'AddIdController@store')->name('addid.store');
 
 Route::get('/help', 'HelpController@index');
-
 Route::get('/help/out2xls', 'HelpController@out2xls');
-
 Route::get('/help/rules', 'HelpController@rules');
 
 Route::get('/edittable/edittable1', 'EditTable\EditTableController1@index');
-
 Route::get('/edittable/edittable2', 'EditTable\EditTableController2@index');
-
 Route::get('/edittable/edittable3', 'EditTable\EditTableController1@index');
-
 Route::get('/edittable/edittable4', 'EditTable\EditTableController1@index');
-
 Route::get('/edittable/edittable5', 'EditTable\EditTableController1@index');
 
 

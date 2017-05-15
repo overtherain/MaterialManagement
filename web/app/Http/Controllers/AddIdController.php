@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use DB;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use Request;
 use App\Http\Controllers\Controller;
 use Log;
 
@@ -14,48 +15,9 @@ class addidController extends Controller
         $this->middleware('auth');
     }
     
-    public function test()
-    {
-        $types = DB::table('type')->get();
-        $ictypes = DB::table('ictype')->get();
-        $passiveeletypes = DB::table('passiveeletype')->get();
-        $activeeletypes = DB::table('activeeletype')->get();
-        $electricaltypes = DB::table('electricaltype')->get();
-        $mechanismstypes = DB::table('mechanismstype')->get();
-        $partstypes = DB::table('partstype')->get();
-        $packingmaterialstypes = DB::table('packingmaterialstype')->get();
-        $semifinishedproducttypes = DB::table('semifinishedproducttype')->get();
-        $finishedproducttypes = DB::table('finishedproducttype')->get();
-        $dummytypes = DB::table('dummytype')->get();
-        
-        $pipelines = DB::table('pipelines')->get();
-        
-        $day = date("Y-m-d%");
-        $date = "$day";
-        //dd($day);
-        $materialitems = DB::table('materialitems')->where('AddTime','LIKE',$date)->orderBy('AddTime', 'desc')->paginate(10);
-        //$materialitems = DB::table('materialitems')->paginate(10);
-        
-        return view('addtest',[
-            'types'=>$types,
-            'ictypes'=>$ictypes,
-            'passiveeletypes'=>$passiveeletypes,
-            'activeeletypes'=>$activeeletypes,
-            'electricaltypes'=>$electricaltypes,
-            'mechanismstypes'=>$mechanismstypes,
-            'partstypes'=>$partstypes,
-            'packingmaterialstypes'=>$packingmaterialstypes,
-            'semifinishedproducttypes'=>$semifinishedproducttypes,
-            'finishedproducttypes'=>$finishedproducttypes,
-            'dummytypes'=>$dummytypes,
-            'pipelines'=>$pipelines,
-            
-            'materialitems'=>$materialitems
-        ]);
-    }
-    
     public function getid1()
     {
+        //Log::info('getid1');
         $data = array();
         $types = DB::table('type')->get();
         foreach($types as $type=>$a){
@@ -67,97 +29,91 @@ class addidController extends Controller
     
     public function getid2()
     {
+        //Log::info('getid2');
         $type = $_GET['typeid1'];
         $data = array();
-        /*$ictypes = DB::table('ictype')->get();
-        foreach($ictypes as $ictype=>$a){
-            $data[$ictype]['value'] = $a->ICValue;
-            $data[$ictype]['name'] = $a->ICName;
-        }
-        log::info($data);
-        return response()->json(['status'=>1,'data'=>$data]);*/
-        //Log::info($tmp);
+        
         switch($type){
             case "I":
-                Log::info($type);
+                //Log::info($type);
                 $ictypes = DB::table('ictype')->get();
                 foreach($ictypes as $ictype=>$b){
                     $data[$ictype]['value'] = $b->ICValue;
                     $data[$ictype]['name'] = $b->ICName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             case 'P':
-                Log::info($type);
+                //Log::info($type);
                 $passiveeletypes = DB::table('passiveeletype')->get();
                 foreach($passiveeletypes as $passiveeletype=>$a){
                     $data[$passiveeletype]['value'] = $a->PassiveValue;
                     $data[$passiveeletype]['name'] = $a->PassiveName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             case 'A':
-                Log::info($type);
+                //Log::info($type);
                 $activeeletypes = DB::table('activeeletype')->get();
                 foreach($activeeletypes as $activeeletype=>$a){
                     $data[$activeeletype]['value'] = $a->ActiveValue;
                     $data[$activeeletype]['name'] = $a->ActiveName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             case 'E':
-                Log::info($type);
+                //Log::info($type);
                 $electricaltypes = DB::table('electricaltype')->get();
                 foreach($electricaltypes as $electricaltype=>$a){
                     $data[$electricaltype]['value'] = $a->ElectricalValue;
                     $data[$electricaltype]['name'] = $a->ElectricalName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             case 'M':
-                Log::info($type);
+                //Log::info($type);
                 $mechanismstypes = DB::table('mechanismstype')->get();
                 foreach($mechanismstypes as $mechanismstype=>$a){
                     $data[$mechanismstype]['value'] = $a->MechanismsValue;
                     $data[$mechanismstype]['name'] = $a->MechanismsName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             case 'B':
-                Log::info($type);
+                //Log::info($type);
                 $partstypes = DB::table('partstype')->get();
                 foreach($partstypes as $partstype=>$a){
                     $data[$partstype]['value'] = $a->PartsValue;
                     $data[$partstype]['name'] = $a->PartsName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             case 'S':
-                Log::info($type);
+                //Log::info($type);
                 $semifinishedproducttypes = DB::table('semifinishedproducttype')->get();
                 foreach($semifinishedproducttypes as $semifinishedproducttype=>$a){
                     $data[$semifinishedproducttype]['value'] = $a->SFPValue;
                     $data[$semifinishedproducttype]['name'] = $a->SFPName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             case 'F':
-                Log::info($type);
+                //Log::info($type);
                 $finishedproducttypes = DB::table('finishedproducttype')->get();
                 foreach($finishedproducttypes as $finishedproducttype=>$a){
                     $data[$finishedproducttype]['value'] = $a->FPValue;
                     $data[$finishedproducttype]['name'] = $a->FPName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             case 'D':
-                Log::info($type);
+                //Log::info($type);
                 $dummytypes = DB::table('dummytype')->get();
                 foreach($dummytypes as $dummytype=>$a){
                     $data[$dummytype]['value'] = $a->DummyValue;
                     $data[$dummytype]['name'] = $a->DummyName;
                 }
-                log::info($data);
+                //Log::info($data);
                 break;
             default:
                 break;
@@ -168,103 +124,20 @@ class addidController extends Controller
     
     public function getid3()
     {
-        $type1 = $_GET['typeid1'];
-        $type2 = $_GET['typeid2'];
+        //Log::info('getid3');
         $data = array();
-        log::info($type1);
-        log::info($type2);
-        
-        switch($type1){
-            case "I":
-                Log::info($type1);
-                $ictypes = DB::table('ictype')->get();
-                foreach($ictypes as $ictype=>$b){
-                    $data[$ictype]['value'] = $b->ICValue;
-                    $data[$ictype]['name'] = $b->ICName;
-                }
-                log::info($data);
-                break;
-            case 'P':
-                Log::info($type1);
-                $passiveeletypes = DB::table('passiveeletype')->get();
-                foreach($passiveeletypes as $passiveeletype=>$a){
-                    $data[$passiveeletype]['value'] = $a->PassiveValue;
-                    $data[$passiveeletype]['name'] = $a->PassiveName;
-                }
-                log::info($data);
-                break;
-            case 'A':
-                Log::info($type1);
-                $activeeletypes = DB::table('activeeletype')->get();
-                foreach($activeeletypes as $activeeletype=>$a){
-                    $data[$activeeletype]['value'] = $a->ActiveValue;
-                    $data[$activeeletype]['name'] = $a->ActiveName;
-                }
-                log::info($data);
-                break;
-            case 'E':
-                Log::info($type1);
-                $electricaltypes = DB::table('electricaltype')->get();
-                foreach($electricaltypes as $electricaltype=>$a){
-                    $data[$electricaltype]['value'] = $a->ElectricalValue;
-                    $data[$electricaltype]['name'] = $a->ElectricalName;
-                }
-                log::info($data);
-                break;
-            case 'M':
-                Log::info($type1);
-                $mechanismstypes = DB::table('mechanismstype')->get();
-                foreach($mechanismstypes as $mechanismstype=>$a){
-                    $data[$mechanismstype]['value'] = $a->MechanismsValue;
-                    $data[$mechanismstype]['name'] = $a->MechanismsName;
-                }
-                log::info($data);
-                break;
-            case 'B':
-                Log::info($type1);
-                $partstypes = DB::table('partstype')->get();
-                foreach($partstypes as $partstype=>$a){
-                    $data[$partstype]['value'] = $a->PartsValue;
-                    $data[$partstype]['name'] = $a->PartsName;
-                }
-                log::info($data);
-                break;
-            case 'S':
-                Log::info($type1);
-                $semifinishedproducttypes = DB::table('semifinishedproducttype')->get();
-                foreach($semifinishedproducttypes as $semifinishedproducttype=>$a){
-                    $data[$semifinishedproducttype]['value'] = $a->SFPValue;
-                    $data[$semifinishedproducttype]['name'] = $a->SFPName;
-                }
-                log::info($data);
-                break;
-            case 'F':
-                Log::info($type1);
-                $finishedproducttypes = DB::table('finishedproducttype')->get();
-                foreach($finishedproducttypes as $finishedproducttype=>$a){
-                    $data[$finishedproducttype]['value'] = $a->FPValue;
-                    $data[$finishedproducttype]['name'] = $a->FPName;
-                }
-                log::info($data);
-                break;
-            case 'D':
-                Log::info($type1);
-                $dummytypes = DB::table('dummytype')->get();
-                foreach($dummytypes as $dummytype=>$a){
-                    $data[$dummytype]['value'] = $a->DummyValue;
-                    $data[$dummytype]['name'] = $a->DummyName;
-                }
-                log::info($data);
-                break;
-            default:
-                break;
+        $companys = DB::table('company')->get();
+        foreach($companys as $company=>$a){
+            $data[$company]['value'] = $a->CompanyValue;
+            $data[$company]['name'] = $a->CompanyName;
         }
+        //Log::info($data);
         return response()->json(['status'=>1,'data'=>$data]);
     }
     
     public function index()
     {
-        $types = DB::table('type')->get();
+        /*$types = DB::table('type')->get();
         $ictypes = DB::table('ictype')->get();
         $passiveeletypes = DB::table('passiveeletype')->get();
         $activeeletypes = DB::table('activeeletype')->get();
@@ -274,9 +147,11 @@ class addidController extends Controller
         $packingmaterialstypes = DB::table('packingmaterialstype')->get();
         $semifinishedproducttypes = DB::table('semifinishedproducttype')->get();
         $finishedproducttypes = DB::table('finishedproducttype')->get();
-        $dummytypes = DB::table('dummytype')->get();
+        $dummytypes = DB::table('dummytype')->get();*/
         
-        $pipelines = DB::table('pipelines')->get();
+        
+        $customers = DB::table('customer')->get();
+        $producttypes = DB::table('producttype')->get();
         
         $day = date("Y-m-d%");
         $date = "$day";
@@ -285,7 +160,7 @@ class addidController extends Controller
         //$materialitems = DB::table('materialitems')->paginate(10);
         
         return view('addid',[
-            'types'=>$types,
+            /*'types'=>$types,
             'ictypes'=>$ictypes,
             'passiveeletypes'=>$passiveeletypes,
             'activeeletypes'=>$activeeletypes,
@@ -295,10 +170,49 @@ class addidController extends Controller
             'packingmaterialstypes'=>$packingmaterialstypes,
             'semifinishedproducttypes'=>$semifinishedproducttypes,
             'finishedproducttypes'=>$finishedproducttypes,
-            'dummytypes'=>$dummytypes,
-            'pipelines'=>$pipelines,
+            'dummytypes'=>$dummytypes,*/
             
+            'customers'=>$customers,
+            'producttypes'=>$producttypes,
             'materialitems'=>$materialitems
         ]);
+    }
+    
+    public function store(Request $request)
+    {
+        $materialNum = Request::get('material_num_input');
+        Log::info($materialNum);
+        $author = Request::get('author_input');
+        $description = Request::get('description_input');
+        $note = Request::get('note_input');
+        
+        $len = strlen($materialNum);
+        $msg = '';
+        if($materialNum == null || $materialNum == ''){
+            $msg .= '物料编号不能为空!';
+        }else if($len < 12){
+            $msg .= '物料编号长度不正确!';
+            $msg .= 'length:'.$len;
+        }else{
+            $tmparray = explode('-',$materialNum);
+            if(count($tmparray) > 1){
+                $msg .= '物料编号不能有空选项!';
+            }else{
+                $search = DB::select('select * from materialitems where Material_num = ?', ["$materialNum"]);
+                if($search != null){
+                    $msg .= '物料编号已存在!';
+                }else{
+                    $red = DB::insert('insert into materialitems(Material_num,Author,Description,Notes) VALUES(?,?,?,?)',["$materialNum","$author","$description","$note"]);
+                    $msg .= '添加成功!';
+                    $msg .= ' 料号:'.$materialNum;
+                    $msg .= ' 影响行数:'.$red;
+                }
+            }
+        }
+        return view('message',[
+            'msg'=>$msg
+        ]);
+        //return redirect('addid');
+        //return redirect()->action('AddIdController@index',['msg'=>$msg]);
     }
 }

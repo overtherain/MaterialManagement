@@ -16,9 +16,7 @@
                             </div>
                             <div class="col-xs-1">&nbsp;</div>
                             <div class="form-group col-md-3">
-                                <button type="submit" class="btn btn-primary">
-                                    删除
-                                </button>
+                                <button type="submit" class="btn btn-primary">删除</button>
                             </div>
                         </form>
                     </div>

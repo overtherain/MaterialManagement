@@ -3,6 +3,7 @@
 @section('content')
 
 <script src="http://cdn.staticfile.org/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/jquery.cxselect.js"></script>
 
 
 <div class="container">
@@ -10,17 +11,79 @@
         <div class="col-lg-12 col-md-offset-0">
             <div class="panel panel-default">
                 <div class="panel-heading">申请物料系统</div>
-
                 <div class="panel-body">
-                    <div class="form-group">
-                        
+                    <div class="row" id="notice">
+                        <div class="col-xs-2">
+                            <a>&nbsp;&nbsp;第1码</a>
+                        </div>
+                        <div class="col-xs-3">
+                            <a>&nbsp;&nbsp;第2码</a>
+                        </div>
+                        <div class="col-xs-3">
+                            <a>&nbsp;&nbsp;第3-9码</a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a>&nbsp;&nbsp;第10,11码</a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a>&nbsp;&nbsp;第12码</a>
+                        </div>
                     </div>
-                    <br></br>
-                    <form class="form-horizontal" role="form" method="POST" action="">
+                    
+                    <div class="row" id="material">
+                        <div class="col-xs-2">
+                            <select name="typeid1" class="typeid1 input-md form-control" data-url="{{url('/addid/getid1')}}" onChange="settype('1',this.options[this.options.selectedIndex].value)">
+                                <option value="-1">请选择</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3">
+                            <select name="typeid2" class="typeid2 input-md form-control" data-url="{{url('/addid/getid2')}}" data-json-space="data" onChange="settype('2',this.options[this.options.selectedIndex].value)"> 
+                            </select>
+                        </div>
+                        <div class="col-xs-3">
+                            <div id="set7">
+                                <input name="typeid3" id="typeid3" type="text" class="form-control" value="" placeholder="厂商型号前七位,不足补X码" maxlength="7" onChange="settype('3',this.value)">
+                            </div>
+                            <div id="set4_3">
+                                <select name="typeid3_6" id="typeid3_6" class="input-md form-control" value="" maxlength="4" >
+                                    @foreach ($producttypes as $producttype)
+                                        <option value="{{$producttype->ProductTypeValue}}">{{$producttype->ProductTypeName}}</option>
+                                    @endforeach
+                                </select>
+                                <select name="typeid7_9" id="typeid7_9" class="input-md form-control" value="" maxlength="3" >
+                                    @foreach ($customers as $customer)
+                                        <option value="{{$customer->CustomerValue}}">{{$customer->CustomerName}}</option>
+                                    @endforeach
+                                </select>
+                                <input name="input7_9" id="input7_9" style="display:none" type="text" class="form-control" value="" placeholder="XXX" maxlength="3" >
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <select name="typeid4" class="typeid4 input-md form-control" data-url="{{url('/addid/getid3')}}" data-json-space="data" onChange="settype('4',this.options[this.options.selectedIndex].value)">
+                            </select>
+                            
+                        </div>
+                        <div class="col-xs-1">
+                            <select name="typeid5" class="input-md form-control" onChange="settype('5',this.options[this.options.selectedIndex].value)">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                        </div>
+                    </div>
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('addid.store') }}">
                         {{ csrf_field() }}
+                        <div>&nbsp;</div>
                         <div class="form-group">
                             <div class="controls col-sm-3">
-                                <input type="text" id="material_num_input" class="form-control" value="" readonly>
+                                <input type="text" id="material_num_input" name="material_num_input" class="form-control" value="" readonly>
                             </div>
                         </div>
                         <div class="form-group">
@@ -40,7 +103,12 @@
                                 &nbsp;
                             </div>
                             <div class="controls col-sm-2">
-                                <button type="submit" id="bt_add" class="btn btn-primary btn-block">添加</button>
+                                <button type="submit" id="bt_add" class="btn btn-primary btn-block" >添加</button>
+                            </div>
+                            <div class="controls col-sm-4">
+                                @if(isset($msg))
+                                    <a>{{$msg}}</a>
+                                @endif
                             </div>
                         </div>
                     </form>
@@ -95,6 +163,10 @@ var gettype2 = -1;
 var gettype3 = -1;
 var gettype4 = -1;
 var gettype5 = -1;
+$(document).ready(function(){
+    $('#set4_3').hide();
+    $('#set7').show();
+});
 
 function settype(id, value){
     switch(id){
@@ -112,6 +184,7 @@ function settype(id, value){
             gettype4 = -1;
             gettype5 = -1;
             document.getElementById("material_num_input").value = gettype1 + gettype2;
+            switch3_11(gettype1,gettype2);
             break;
         case "3":
             gettype3 = value;
@@ -123,6 +196,7 @@ function settype(id, value){
             gettype4 = value;
             gettype5 = -1;
             document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4;
+            break;
         case "5":
             gettype5 = value;
             document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4 + gettype5;
@@ -131,82 +205,48 @@ function settype(id, value){
     }
     //alert(gettype1 + ", " + gettype2 + ", " + gettype3 + ", " + gettype4);
 }
-function gettype(id){
-    switch(id){
-        case "1":
-            alert(gettype1);
-            break; 
-        case "2":
-            alert(gettype2);
+
+function switch3_11(type1,type2){
+    switch(type1){
+        case "I":
+            $('#set4_3').hide();
+            $('#set7').show();
             break;
-        case "3":
-            alert(gettype3);
+        case "P":
+            
             break;
-        case "4":
-            alert(gettype4);
+        case "A":
+            $('#set4_3').hide();
+            $('#set7').show();
             break;
-        default:;
+        case "E":
+            
+            break;
+        case "M":
+            
+            break;
+        case "B":
+            
+            break;
+        case "S":
+            
+            break;
+        case "F":
+            $('#set4_3').show();
+            $('#set7').hide();
+            break;
+        case "D":
+            $('#set4_3').show();
+            $('#set7').hide();
+            break;
     }
 }
 
-function settype2(id){
-    switch(id){
-        case "1":
-            alert('11');
-            break; 
-        case "2":
-            alert('22');
-            break;
-        case "3":
-            alert('33');
-            break;
-        case "4":
-            alert('44');
-            break;
-        default:;
-    }
-}
-
-
-
-//begin 响应下拉菜单
-function customDropDown(ele){
-    this.dropdown=ele;
-    this.placeholder=this.dropdown.find(".placeholder");
-    this.options=this.dropdown.find("ul.dropdown-menu > li");
-    this.value='';
-    this.index=-1;
-    this.initEvents();
-}
-customDropDown.prototype={
-    initEvents:function(){
-        var obj=this;
-
-        obj.options.on("click",function(){
-            var opt=$(this);
-            obj.text=opt.find("a").text();
-            obj.value=opt.attr("value");
-            obj.index=opt.index();
-            obj.placeholder.text(obj.text);
-        });
-    },
-    getText:function(){
-        return this.text;
-    },
-    getValue:function(){
-        return this.value;
-    },
-    getIndex:function(){
-        return this.index;
-    }
-}
-$(document).ready(function(){
-    var type1=new customDropDown($("#dropdown_type1"));
-    var type2=new customDropDown($("#dropdown_type2"));
-    var type3=new customDropDown($("#dropdown_type3"));
-    var type4=new customDropDown($("#dropdown_type4"));
-    var type5=new customDropDown($("#dropdown_type5"));
+$("#material").cxSelect({
+    selects: ['typeid1','typeid2','typeid4'],
+    jsonName: 'name',
+    jsonValue: 'value',
+    jsonSpace: 'data',
 });
-//end
 </script>
 @endsection

@@ -44,6 +44,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //zhangshaobin add begin
+        /* 错误页面 */
+        if ($exception instanceof HttpException) {
+            $code = $exception->getStatusCode();
+
+            if (view()->exists('errors.' . $code)) {
+                $message  = $exception->getMessage();
+                return response()->view('errors.' . $exception->getStatusCode(), ['message'=>$message], $exception->getStatusCode());
+            }
+        }
+        //zhangshaobin add end
         return parent::render($request, $exception);
     }
 

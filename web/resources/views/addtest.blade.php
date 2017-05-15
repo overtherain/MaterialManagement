@@ -14,19 +14,19 @@
                 <div class="panel-body">
                     <div class="row" id="notice">
                         <div class="col-xs-2">
-                            <a>第一码</a>
+                            <a>&nbsp;&nbsp;第一码</a>
                         </div>
                         <div class="col-xs-3">
-                            <a>第二码</a>
+                            <a>&nbsp;&nbsp;第二码</a>
                         </div>
                         <div class="col-xs-3">
-                            <a>第3-9码</a>
+                            <a>&nbsp;&nbsp;第3-9码</a>
                         </div>
                         <div class="col-xs-2">
-                            <a>第10,11码</a>
+                            <a>&nbsp;&nbsp;第10,11码</a>
                         </div>
                         <div class="col-xs-2">
-                            <a>第12码</a>
+                            <a>&nbsp;&nbsp;第12码</a>
                         </div>
                     </div>
                     
@@ -41,14 +41,14 @@
                             </select>
                         </div>
                         <div class="col-xs-3">
-                            <input type="text" id="inputid" class="form-control" value="" placeholder="厂商型号前七位,不足补X码">
+                            <input name="typeid3" id="typeid3" type="text" class="form-control" value="" placeholder="厂商型号前七位,不足补X码" maxlength="7" onChange="settype('3',this.value)">
                         </div>
                         <div class="col-xs-2">
-                            <select name="typeid3" class="typeid3 input-md form-control" data-url="{{url('/addtest/getid3')}}" data-json-space="data" onChange="settype('3',this.options[this.options.selectedIndex].value)">
+                            <select name="typeid4" class="typeid4 input-md form-control" data-url="{{url('/addtest/getid3')}}" data-json-space="data" onChange="settype('4',this.options[this.options.selectedIndex].value)">
                             </select>
                         </div>
                         <div class="col-xs-1">
-                            <select name="typeid4" class="typeid4 input-md form-control">
+                            <select name="typeid5" class="input-md form-control" onChange="settype('5',this.options[this.options.selectedIndex].value)">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -138,13 +138,12 @@ function settype(id, value){
             break;
         default:;
     }
-    //alert(gettype1 + ", " + gettype2 + ", " + gettype3 + ", " + gettype4);
+    alert(gettype1 + ", " + gettype2 + ", " + gettype3 + ", " + gettype4 + ", " + gettype5);
 }
 
 
 $("#material").cxSelect({
-    //url:"/js/cityData.json",
-    selects: ['typeid1', 'typeid2'],
+    selects: ['typeid1','typeid2','typeid4'],
     jsonName: 'name',
     jsonValue: 'value',
     jsonSpace: 'data',
