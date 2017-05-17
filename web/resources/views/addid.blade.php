@@ -5,7 +5,6 @@
 <script src="http://cdn.staticfile.org/jquery/1.11.3/jquery.min.js"></script>
 <script src="/js/jquery.cxselect.js"></script>
 
-
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-offset-0">
@@ -217,7 +216,8 @@
                             </select>
                         </div>
                     </div>
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('addid.store') }}">
+
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('addid.store') }}" >
                         {{ csrf_field() }}
                         <div>&nbsp;</div>
                         <div class="form-group">
@@ -242,12 +242,7 @@
                                 &nbsp;
                             </div>
                             <div class="controls col-sm-2">
-                                <button type="submit" id="bt_add" class="btn btn-primary btn-block" >添加</button>
-                            </div>
-                            <div class="controls col-sm-4">
-                                @if(isset($msg))
-                                    <a>{{$msg}}</a>
-                                @endif
+                                <button name="bt_add" id="bt_add" type="submit" class="bt_add btn btn-primary btn-block" onclick="return checkSubmit();">添加</button>
                             </div>
                         </div>
                     </form>
@@ -336,34 +331,55 @@ $(document).ready(function(){
     
     createProductType();
     createCustomer();
-    /*var tmp1 = $('#typeid1').val();
+    var tmp1 = $('#typeid1').val();
     if(tmp1 != null && tmp1 != '' && tmp1 != -1){
         createType2(tmp1);
-    }*/
+    }
 });
+
+function checkSubmit(){
+    var material = $('#material_num_input').val();
+    var author = $('#author_input').val();
+    var description = $('#description_input').val();
+    var note = $('#note_input').val();
+    //alert('checkSubmit');
+    if(material == null || material == ''){
+        alert('物料编号不能为空!');
+        return false;
+    }else if(author == null || author == ''){
+        alert('作者不能为空!');
+        $('#note_input').focus();
+        return false;
+    }else if(material.length != 12 || material.indexOf('-1') >= 0){
+        alert('物料编号不正确!');
+        return false;
+    }else{
+        return true;
+    }
+}
 
 function settype(id, type, value){
     switch(id){
         case "1":
             gettype1 = value;
-            gettype2 = -1;
-            gettype3 = -1;
-            gettype4 = -1;
-            gettype5 = -1;
+            //gettype2 = -1;
+            //gettype3 = -1;
+            //gettype4 = -1;
+            //gettype5 = -1;
             document.getElementById("material_num_input").value = gettype1;
             createType2(gettype1);
             break; 
         case "2":
             gettype2 = value;
-            gettype3 = -1;
-            gettype4 = -1;
-            gettype5 = -1;
+            //gettype3 = -1;
+            //gettype4 = -1;
+            //gettype5 = -1;
             document.getElementById("material_num_input").value = gettype1 + gettype2;
             switch3_11(gettype1,gettype2);
             break;
         case "3_9":
-            gettype4 = -1;
-            gettype5 = -1;
+            //gettype4 = -1;
+            //gettype5 = -1;
             switch(type){
                 //7
                 case "0":
@@ -372,9 +388,9 @@ function settype(id, type, value){
                 //1-4-1-1
                 case "1":
                     gettype3_1 = value;
-                    gettype3_1_4 = -1;
-                    gettype3_1_4_1 = -1;
-                    gettype3_1_4_1_1 = -1;
+                    //gettype3_1_4 = -1;
+                    //gettype3_1_4_1 = -1;
+                    //gettype3_1_4_1_1 = -1;
                     gettype3 = gettype3_1;
                     
                     $('#input4_9').hide();
@@ -390,13 +406,13 @@ function settype(id, type, value){
                     break;
                 case "1-4":
                     gettype3_1_4 = value;
-                    gettype3_1_4_1 = -1;
-                    gettype3_1_4_1_1 = -1;
+                    //gettype3_1_4_1 = -1;
+                    //gettype3_1_4_1_1 = -1;
                     gettype3 = gettype3_1 + gettype3_1_4;
                     break;
                 case "1-4-1":
                     gettype3_1_4_1 = value;
-                    gettype3_1_4_1_1 = -1;
+                    //gettype3_1_4_1_1 = -1;
                     gettype3 = gettype3_1 + gettype3_1_4 + gettype3_1_4_1;
                     break;
                 case "1-4-1-1":
@@ -406,7 +422,7 @@ function settype(id, type, value){
                 //4-3
                 case "4":
                     gettype3_4 = value;
-                    gettype3_4_3 = -1;
+                    //gettype3_4_3 = -1;
                     gettype3 = gettype3_4;
                     break;
                 case "4-3":
@@ -416,7 +432,7 @@ function settype(id, type, value){
                 //5-2
                 case "5":
                     gettype3_5 = value;
-                    gettype3_5_2 = -1;
+                    //gettype3_5_2 = -1;
                     gettype3 = gettype3_5;
                     break;
                 case "5-2":
@@ -426,28 +442,28 @@ function settype(id, type, value){
                 //1-3-1-1-1
                 case "11":
                     gettype3_11 = value;
-                    gettype3_11_3 = -1;
-                    gettype3_11_3_1 = -1;
-                    gettype3_11_3_1_1 = -1;
-                    gettype3_11_3_1_1_1 = -1;
+                    //gettype3_11_3 = -1;
+                    //gettype3_11_3_1 = -1;
+                    //gettype3_11_3_1_1 = -1;
+                    //gettype3_11_3_1_1_1 = -1;
                     gettype3 = gettype3_11;
                     break;
                 case "11-3":
                     gettype3_11_3 = value;
-                    gettype3_11_3_1 = -1;
-                    gettype3_11_3_1_1 = -1;
-                    gettype3_11_3_1_1_1 = -1;
+                    //gettype3_11_3_1 = -1;
+                    //gettype3_11_3_1_1 = -1;
+                    //gettype3_11_3_1_1_1 = -1;
                     gettype3 = gettype3_11 + gettype3_11_3;
                     break;
                 case "11-3-1":
                     gettype3_11_3_1 = value;
-                    gettype3_11_3_1_1 = -1;
-                    gettype3_11_3_1_1_1 = -1;
+                    //gettype3_11_3_1_1 = -1;
+                    //gettype3_11_3_1_1_1 = -1;
                     gettype3 = gettype3_11 + gettype3_11_3 + gettype3_11_3_1;
                     break;
                 case "11-3-1-1":
                     gettype3_11_3_1_1 = value;
-                    gettype3_11_3_1_1_1 = -1;
+                    //gettype3_11_3_1_1_1 = -1;
                     gettype3 = gettype3_11 + gettype3_11_3 + gettype3_11_3_1 + gettype3_11_3_1_1;
                     break;
                 case "11-3-1-1-1":
@@ -459,14 +475,14 @@ function settype(id, type, value){
             document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3;
             break;
         case "4":
-            gettype5 = -1;
+            //gettype5 = -1;
             switch(type){
                 case "0":
                     gettype4 = value;
                     break;
                 case "1":
                     gettype4_1 = value;
-                    gettype4_1_1 = -1;
+                    //gettype4_1_1 = -1;
                     gettype4 = gettype4_1;
                     break;
                 case "1-1":
