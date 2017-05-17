@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\EditTable;
 
-use DB;
-//use Illuminate\Http\Request;
-use Request;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class EditTableController1 extends Controller
+class EditTableController6 extends Controller
 {
     public function __construct()
     {
@@ -16,7 +14,6 @@ class EditTableController1 extends Controller
     
     public function index()
     {
-        $ictypes = DB::table('ictype')->get();
-        return view('/edittable/edittable1',['ictypes'=>$ictypes]);
+        return view('/edittable/edittable6');
     }
 }

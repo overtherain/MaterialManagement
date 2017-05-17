@@ -15,7 +15,7 @@ class addidController extends Controller
         $this->middleware('auth');
     }
     
-    public function getid1()
+    /*public function getid1()
     {
         //Log::info('getid1');
         $data = array();
@@ -133,23 +133,40 @@ class addidController extends Controller
         }
         //Log::info($data);
         return response()->json(['status'=>1,'data'=>$data]);
-    }
+    }*/
     
     public function index()
     {
-        /*$types = DB::table('type')->get();
-        $ictypes = DB::table('ictype')->get();
-        $passiveeletypes = DB::table('passiveeletype')->get();
-        $activeeletypes = DB::table('activeeletype')->get();
-        $electricaltypes = DB::table('electricaltype')->get();
-        $mechanismstypes = DB::table('mechanismstype')->get();
-        $partstypes = DB::table('partstype')->get();
-        $packingmaterialstypes = DB::table('packingmaterialstype')->get();
-        $semifinishedproducttypes = DB::table('semifinishedproducttype')->get();
+        $dummytypes = DB::table('dummytype')->get();
         $finishedproducttypes = DB::table('finishedproducttype')->get();
-        $dummytypes = DB::table('dummytype')->get();*/
+        $semifinishedproducttypes = DB::table('semifinishedproducttype')->get();
+        $partstypes = DB::table('partstype')->get();
+        $mechanismstypes = DB::table('mechanismstype')->get();
+        $electricaltypes = DB::table('electricaltype')->get();
+        $activeeletypes = DB::table('activeeletype')->get();
+        $passiveeletypes = DB::table('passiveeletype')->get();
+        $ictypes = DB::table('ictype')->get();
         
-        
+        $types = DB::table('type')->get();
+        $memorycardsizes = DB::table('memorycardsize')->get();
+        $memorycardtypes = DB::table('memorycardtype')->get();
+        $mmts = DB::table('mmt')->get();
+        $colors = DB::table('color')->get();
+        $mssurfaces = DB::table('mssurface')->get();
+        $msholes = DB::table('mshole')->get();
+        $msheads = DB::table('mshead')->get();
+        $mstypes = DB::table('mstype')->get();
+        $languages = DB::table('language')->get();
+        $mos = DB::table('mo')->get();
+        $mas = DB::table('ma')->get();
+        $mms = DB::table('mm')->get();
+        $mps = DB::table('mp')->get();
+        $layers = DB::table('layer')->get();
+        $eas = DB::table('ea')->get();
+        $companys = DB::table('company')->get();
+        $volages = DB::table('volage')->get();
+        $sizes = DB::table('size')->get();
+        $precisions = DB::table('precision')->get();
         $customers = DB::table('customer')->get();
         $producttypes = DB::table('producttype')->get();
         
@@ -157,21 +174,38 @@ class addidController extends Controller
         $date = "$day";
         //dd($day);
         $materialitems = DB::table('materialitems')->where('AddTime','LIKE',$date)->orderBy('AddTime', 'desc')->paginate(10);
-        //$materialitems = DB::table('materialitems')->paginate(10);
         
         return view('addid',[
-            /*'types'=>$types,
             'ictypes'=>$ictypes,
             'passiveeletypes'=>$passiveeletypes,
             'activeeletypes'=>$activeeletypes,
             'electricaltypes'=>$electricaltypes,
             'mechanismstypes'=>$mechanismstypes,
             'partstypes'=>$partstypes,
-            'packingmaterialstypes'=>$packingmaterialstypes,
             'semifinishedproducttypes'=>$semifinishedproducttypes,
             'finishedproducttypes'=>$finishedproducttypes,
-            'dummytypes'=>$dummytypes,*/
+            'dummytypes'=>$dummytypes,
             
+            'types'=>$types,
+            'memorycardsizes'=>$memorycardsizes,
+            'memorycardtypes'=>$memorycardtypes,
+            'mmts'=>$mmts,
+            'colors'=>$colors,
+            'mssurfaces'=>$mssurfaces,
+            'msholes'=>$msholes,
+            'msheads'=>$msheads,
+            'mstypes'=>$mstypes,
+            'languages'=>$languages,
+            'mos'=>$mos,
+            'mas'=>$mas,
+            'mms'=>$mms,
+            'mps'=>$mps,
+            'layers'=>$layers,
+            'eas'=>$eas,
+            'companys'=>$companys,
+            'volages'=>$volages,
+            'sizes'=>$sizes,
+            'precisions'=>$precisions,
             'customers'=>$customers,
             'producttypes'=>$producttypes,
             'materialitems'=>$materialitems
@@ -188,19 +222,22 @@ class addidController extends Controller
         
         $len = strlen($materialNum);
         $msg = '';
-        if($materialNum == null || $materialNum == ''){
-            $msg .= '物料编号不能为空!';
-        }else if($len < 12){
+        if($materialNum == null || $materialNum == '' || $author == null || $author == ''){
+            $msg .= '物料编号/修改人不能为空!';
+        }else if($len != 12){
             $msg .= '物料编号长度不正确!';
-            $msg .= 'length:'.$len;
+            $msg .= ' length:'.$len;
         }else{
             $tmparray = explode('-',$materialNum);
             if(count($tmparray) > 1){
                 $msg .= '物料编号不能有空选项!';
             }else{
-                $search = DB::select('select * from materialitems where Material_num = ?', ["$materialNum"]);
-                if($search != null){
+                $searchID = DB::select('select * from materialitems where Material_num = ?', ["$materialNum"]);
+                $searchNotes = DB::select('select * from materialitems where Notes = ?', ["$note"]);
+                if($searchID != null){
                     $msg .= '物料编号已存在!';
+                }else if($searchNotes != null){
+                    $msg .= '原厂料号已存在!';
                 }else{
                     $red = DB::insert('insert into materialitems(Material_num,Author,Description,Notes) VALUES(?,?,?,?)',["$materialNum","$author","$description","$note"]);
                     $msg .= '添加成功!';

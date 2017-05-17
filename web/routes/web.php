@@ -35,10 +35,11 @@ Route::get('/help/rules', 'HelpController@rules');
 
 Route::get('/edittable/edittable1', 'EditTable\EditTableController1@index');
 Route::get('/edittable/edittable2', 'EditTable\EditTableController2@index');
-Route::get('/edittable/edittable3', 'EditTable\EditTableController1@index');
-Route::get('/edittable/edittable4', 'EditTable\EditTableController1@index');
-Route::get('/edittable/edittable5', 'EditTable\EditTableController1@index');
-
+Route::get('/edittable/edittable3', 'EditTable\EditTableController3@index');
+Route::get('/edittable/edittable4', 'EditTable\EditTableController4@index');
+Route::get('/edittable/edittable5', 'EditTable\EditTableController5@index');
+Route::get('/edittable/edittable6', 'EditTable\EditTableController6@index');
+Route::get('/edittable/edittable7', 'EditTable\EditTableController7@index');
 
 Route::get('/search', 'SearchController@index');
 Route::post('/search/result', 'searchController@showresult')->name('search.result');
