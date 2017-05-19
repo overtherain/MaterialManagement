@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\EditTable;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,6 +15,7 @@ class EditTableController7 extends Controller
     
     public function index()
     {
-        return view('/edittable/edittable7');
+        $customers = DB::table('customer')->get();
+        return view('/edittable/edittable7',['customers'=>$customers]);
     }
 }

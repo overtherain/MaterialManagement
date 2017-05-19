@@ -347,7 +347,7 @@ function checkSubmit(){
         alert('物料编号不能为空!');
         return false;
     }else if(author == null || author == ''){
-        alert('作者不能为空!');
+        alert('修改人不能为空!');
         $('#note_input').focus();
         return false;
     }else if(material.length != 12 || material.indexOf('-1') >= 0){
@@ -366,7 +366,7 @@ function settype(id, type, value){
             //gettype3 = -1;
             //gettype4 = -1;
             //gettype5 = -1;
-            document.getElementById("material_num_input").value = gettype1;
+            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4 + gettype5;
             createType2(gettype1);
             break; 
         case "2":
@@ -374,7 +374,7 @@ function settype(id, type, value){
             //gettype3 = -1;
             //gettype4 = -1;
             //gettype5 = -1;
-            document.getElementById("material_num_input").value = gettype1 + gettype2;
+            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4 + gettype5;
             switch3_11(gettype1,gettype2);
             break;
         case "3_9":
@@ -472,7 +472,7 @@ function settype(id, type, value){
                     break;
                 
             }
-            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3;
+            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4 + gettype5;
             break;
         case "4":
             //gettype5 = -1;
@@ -490,7 +490,7 @@ function settype(id, type, value){
                     gettype4 = gettype4_1 + gettype4_1_1;
                     break;
             }
-            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4;
+            document.getElementById("material_num_input").value = gettype1 + gettype2 + gettype3 + gettype4 + gettype5;
             break;
         case "5":
             gettype5 = value;
@@ -524,8 +524,8 @@ function switch3_11(type1,type2){
                     var s = '';
                     $('#type3').html('');
                     s = '<option value="-1">请选择</option>'+
-                        '<option value="0">普通</option>'+
-                        '<option value="1">热敏</option>';
+                        '<option value="0">0/普通</option>'+
+                        '<option value="1">1/热敏</option>';
                     $('#type3').append(s);
                     break;
                 case "C":
@@ -534,7 +534,7 @@ function switch3_11(type1,type2){
                     $('#type3').html('');
                     s += '<option value="-1">请选择</option>';
                     for(var i=0;i<volages.length;i++){
-                        s += '<option value='+volages[i].VolValue+'>'+volages[i].VolName+'</option>';
+                        s += '<option value='+volages[i].VolValue+'>'+volages[i].VolValue+'/'+volages[i].VolName+'</option>';
                     }
                     $('#type3').append(s);
                     break;
@@ -542,8 +542,8 @@ function switch3_11(type1,type2){
                     var s = '';
                     $('#type3').html('');
                     s = '<option value="-1">请选择</option>'+
-                        '<option value="0">普通</option>'+
-                        '<option value="1">功率电感</option>';
+                        '<option value="0">0/普通</option>'+
+                        '<option value="1">1/功率电感</option>';
                     $('#type3').append(s);
                     break;
                 case "B":

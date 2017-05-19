@@ -40,6 +40,13 @@ Route::get('/edittable/edittable4', 'EditTable\EditTableController4@index');
 Route::get('/edittable/edittable5', 'EditTable\EditTableController5@index');
 Route::get('/edittable/edittable6', 'EditTable\EditTableController6@index');
 Route::get('/edittable/edittable7', 'EditTable\EditTableController7@index');
+Route::post('/edittable/edittable1/store', 'EditTable\EditTableController1@store')->name('edittable1.store');
+Route::post('/edittable/edittable2/store', 'EditTable\EditTableController2@store')->name('edittable2.store');
+Route::post('/edittable/edittable3/store', 'EditTable\EditTableController3@store')->name('edittable3.store');
+Route::post('/edittable/edittable4/store', 'EditTable\EditTableController4@store')->name('edittable4.store');
+Route::post('/edittable/edittable5/store', 'EditTable\EditTableController5@store')->name('edittable5.store');
+Route::post('/edittable/edittable6/store', 'EditTable\EditTableController6@store')->name('edittable6.store');
+Route::post('/edittable/edittable7/store', 'EditTable\EditTableController7@store')->name('edittable7.store');
 
 Route::get('/search', 'SearchController@index');
 Route::post('/search/result', 'searchController@showresult')->name('search.result');
