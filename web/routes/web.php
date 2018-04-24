@@ -33,20 +33,21 @@ Route::get('/help', 'HelpController@index');
 Route::get('/help/out2xls', 'HelpController@out2xls');
 Route::get('/help/rules', 'HelpController@rules');
 
-Route::get('/edittable/edittable1', 'EditTable\EditTableController1@index');
-Route::get('/edittable/edittable2', 'EditTable\EditTableController2@index');
-Route::get('/edittable/edittable3', 'EditTable\EditTableController3@index');
-Route::get('/edittable/edittable4', 'EditTable\EditTableController4@index');
-Route::get('/edittable/edittable5', 'EditTable\EditTableController5@index');
-Route::get('/edittable/edittable6', 'EditTable\EditTableController6@index');
-Route::get('/edittable/edittable7', 'EditTable\EditTableController7@index');
-Route::post('/edittable/edittable1/store', 'EditTable\EditTableController1@store')->name('edittable1.store');
-Route::post('/edittable/edittable2/store', 'EditTable\EditTableController2@store')->name('edittable2.store');
-Route::post('/edittable/edittable3/store', 'EditTable\EditTableController3@store')->name('edittable3.store');
-Route::post('/edittable/edittable4/store', 'EditTable\EditTableController4@store')->name('edittable4.store');
-Route::post('/edittable/edittable5/store', 'EditTable\EditTableController5@store')->name('edittable5.store');
-Route::post('/edittable/edittable6/store', 'EditTable\EditTableController6@store')->name('edittable6.store');
-Route::post('/edittable/edittable7/store', 'EditTable\EditTableController7@store')->name('edittable7.store');
+Route::get('/edittable/EditICType', 'EditTable\EditICType@index');
+Route::get('/edittable/EditActiveeleType', 'EditTable\EditActiveeleType@index');
+Route::get('/edittable/EditCompany', 'EditTable\EditCompany@index');
+Route::get('/edittable/EditProductType', 'EditTable\EditProductType@index');
+Route::get('/edittable/EditMMT', 'EditTable\EditMMT@index');
+Route::get('/edittable/EditColor', 'EditTable\EditColor@index');
+Route::get('/edittable/EditCustomer', 'EditTable\EditCustomer@index');
+
+Route::post('/edittable/EditICType/store', 'EditTable\EditICType@store')->name('EditICType.store');
+Route::post('/edittable/EditActiveeleType/store', 'EditTable\EditActiveeleType@store')->name('EditActiveeleType.store');
+Route::post('/edittable/EditCompany/store', 'EditTable\EditCompany@store')->name('EditCompany.store');
+Route::post('/edittable/EditProductType/store', 'EditTable\EditProductType@store')->name('EditProductType.store');
+Route::post('/edittable/EditMMT/store', 'EditTable\EditMMT@store')->name('EditMMT.store');
+Route::post('/edittable/EditColor/store', 'EditTable\EditColor@store')->name('EditColor.store');
+Route::post('/edittable/EditCustomer/store', 'EditTable\EditCustomer@store')->name('EditCustomer.store');
 
 Route::get('/search', 'SearchController@index');
 Route::post('/search/result', 'searchController@showresult')->name('search.result');

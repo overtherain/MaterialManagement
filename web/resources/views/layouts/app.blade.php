@@ -56,13 +56,13 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/edittable/edittable1') }}">编辑IC类型 </a>
-                                        <a href="{{ url('/edittable/edittable2') }}">编辑主动电子件类型</a>
-                                        <a href="{{ url('/edittable/edittable3') }}">编辑厂商表</a>
-                                        <a href="{{ url('/edittable/edittable4') }}">编辑机种代码</a>
-                                        <a href="{{ url('/edittable/edittable5') }}">编辑屏蔽罩类型</a>
-                                        <a href="{{ url('/edittable/edittable6') }}">编辑颜色码</a>
-                                        <a href="{{ url('/edittable/edittable7') }}">编辑客户码</a>
+                                        <a href="{{ url('/edittable/EditICType') }}">编辑IC类型 </a>
+                                        <a href="{{ url('/edittable/EditActiveeleType') }}">编辑主动电子件类型</a>
+                                        <a href="{{ url('/edittable/EditCompany') }}">编辑厂商表</a>
+                                        <a href="{{ url('/edittable/EditProductType') }}">编辑机种代码</a>
+                                        <a href="{{ url('/edittable/EditMMT') }}">编辑屏蔽罩类型</a>
+                                        <a href="{{ url('/edittable/EditColor') }}">编辑颜色码</a>
+                                        <a href="{{ url('/edittable/EditCustomer') }}">编辑客户码</a>
                                     </li>
                                 </ul>
                             </li>
