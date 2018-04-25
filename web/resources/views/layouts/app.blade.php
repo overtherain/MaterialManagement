@@ -76,7 +76,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ url('/help/out2xls') }}">导出数据到excel</a>
-                                        <a href="BLE-20160524.htm" target="_blank">编码规则</a>
+                                        <a href="rules/BLE-20160524.htm" target="_blank">编码规则</a>
                                         {{--<a href="{{ url('/help') }}">帮助</a>--}}
                                     </li>
                                 </ul>
