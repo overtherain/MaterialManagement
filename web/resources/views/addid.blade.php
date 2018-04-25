@@ -229,7 +229,7 @@
                             <!-- 额外添加信息 -->
                             <div class="control-group">
                                 <div class="col-xs-2">
-                                    <input type="text" id="author_input" name="author_input" class="form-control" placeholder="修改人姓名" value="">
+                                    <input type="text" id="author_input" name="author_input" class="form-control" placeholder="修改人姓名" value="{{Auth::user()->name}}" readonly>
                                 </div>
                                 <div class="col-xs-8">
                                     <input type="text" id="description_input" name="description_input" class="form-control" placeholder="描述信息" value="">

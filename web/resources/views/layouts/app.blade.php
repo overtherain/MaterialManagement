@@ -75,9 +75,9 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">帮助<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/help/out2xls') }}">导出excel表单</a>
-                                        <a href="{{ url('/help/rules') }}">编码规则</a>
-                                        <a href="{{ url('/help') }}">帮助</a>
+                                        <a href="{{ url('/help/out2xls') }}">导出数据到excel</a>
+                                        <a href="BLE-20160524.htm" target="_blank">编码规则</a>
+                                        {{--<a href="{{ url('/help') }}">帮助</a>--}}
                                     </li>
                                 </ul>
                             </li>
@@ -91,12 +91,11 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <ul class="nav navbar-nav">
+                                <li><a href="{{ url('/search') }}">查找</a></li>
                                 @if(Auth::user()->name == 'admin')
-                                    <li><a href="{{ url('/search') }}">查找</a></li>
                                     <li><a href="{{ url('/delete') }}">删除</a></li>
                                 @else
                                     <li></li>
-                                    <li><a href="{{ url('/search') }}">查找</a></li>
                                 @endif
                             </ul>
                             <li class="dropdown">

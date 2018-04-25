@@ -31,7 +31,7 @@ Route::post('/addid/store', 'AddIdController@store')->name('addid.store');
 
 Route::get('/help', 'HelpController@index');
 Route::get('/help/out2xls', 'HelpController@out2xls');
-Route::get('/help/rules', 'HelpController@rules');
+//Route::get('/help/rules', 'HelpController@rules');
 
 Route::get('/edittable/EditICType', 'EditTable\EditICType@index');
 Route::get('/edittable/EditActiveeleType', 'EditTable\EditActiveeleType@index');
