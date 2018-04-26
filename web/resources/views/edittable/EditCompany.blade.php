@@ -87,7 +87,7 @@
                                                 <a style="text">Value</a>
                                             </div>
                                             <div class="col-xs-8">
-                                                <input id="modifyItemValue" name="modifyItemValue" type="text" class="form-control" value="">
+                                                <input id="modifyItemValue" name="modifyItemValue" type="text" class="form-control" value="" maxlength="2">
                                             </div>
                                         </div>
                                         <br>
@@ -134,7 +134,7 @@
                                                 <a style="text">Value</a>
                                             </div>
                                             <div class="col-xs-8">
-                                                <input id="addItemValue" name="addItemValue" type="text" class="form-control" value="">
+                                                <input id="addItemValue" name="addItemValue" type="text" class="form-control" value="" maxlength="2">
                                             </div>
                                         </div>
                                         <br>

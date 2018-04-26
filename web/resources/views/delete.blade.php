@@ -12,7 +12,7 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('delete.store') }}">
                             {{ csrf_field() }}
                             <div class="form-group col-md-3">
-                                <input id="materialid" type="text" class="form-control" name="materialid" placeholder="请输入物料ID" value="{{ old('materialid') }}" required>
+                                <input id="materialid" type="text" class="form-control" name="materialid" maxlength="12" placeholder="请输入物料ID" value="{{ old('materialid') }}" required>
                             </div>
                             <div class="col-xs-1">&nbsp;</div>
                             <div class="form-group col-md-3">

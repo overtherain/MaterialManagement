@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
                         <div class="control-group">
                             <div class="col-xs-2">
-                                <input type="text" id="id_input" name="id_input" class="form-control" placeholder="Material_num" value="">
+                                <input type="text" id="id_input" name="id_input" class="form-control" placeholder="Material_num" value="" maxlength="12">
                             </div>
                             <div class="col-xs-2">
                                 <input type="text" id="ah_input" name="ah_input" class="form-control" placeholder="Author" value="">
