@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manage', 'Auth\ManageAccountController@index');
 Route::get('/reset', 'Auth\ManageAccountController@resetShow');
 Route::post('/reset/done', 'Auth\ManageAccountController@resetPwdDone')->name('reset.done');
+Route::post('/manage/reset', 'Auth\ManageAccountController@manageReset')->name('manage.reset');
+Route::post('/manage/delete', 'Auth\ManageAccountController@manageDel')->name('manage.delete');
+
 
 Route::get('/addid', 'AddIdController@index');
 Route::get('/addid/getid1', 'AddIdController@getid1');

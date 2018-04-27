@@ -12,12 +12,12 @@
 
     <!-- Styles -->
     <!--<link href="/css/app.css" rel="stylesheet">-->
-    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="http://cdn.staticfile.org/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script src="/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     

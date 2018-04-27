@@ -52,4 +52,31 @@ class ManageAccountController extends Controller
         }
     }
     
+    public function manageReset(Request $request)
+    {
+        $userId = $request->input('modifyID');
+        $newpwd = bcrypt($request->input('setpwd'));
+        $this->validate($request, [
+            'setpwd' => 'required|min:6',
+        ]);
+        $modifyRst = DB::update('UPDATE users SET password = ? WHERE id = ?',array($newpwd, $userId));
+        $msg = 'modify user id:'.$userId.' password result : '.$modifyRst;
+        Log::info($msg);
+        return redirect('manage');
+    }
+    
+    public function manageDel(Request $request)
+    {
+        $userId = $request->input('deleteID');
+        $userName = $request->input('deleteName');
+        
+        if($userName == 'admin'){
+            return redirect()->back()->withErrors(['username' => "can't delete admin account!"])->withInput();
+        }else{
+            $delRst = DB::delete('DELETE FROM users WHERE id = ?',array($userId));
+            $msg = 'delete user id:'.$userId.' name: '.$userName.' result:'.$delRst;
+            Log::info($msg);
+            return redirect('manage');
+        }
+    }
 }
