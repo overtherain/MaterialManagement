@@ -21,7 +21,11 @@ Route::get('/now', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/manage', 'Auth\ManageAccountController@index');
+Route::get('/reset', 'Auth\ManageAccountController@resetShow');
+Route::post('/reset/done', 'Auth\ManageAccountController@resetPwdDone')->name('reset.done');
 
 Route::get('/addid', 'AddIdController@index');
 Route::get('/addid/getid1', 'AddIdController@getid1');
@@ -31,7 +35,6 @@ Route::post('/addid/store', 'AddIdController@store')->name('addid.store');
 
 Route::get('/help', 'HelpController@index');
 Route::get('/help/out2xls', 'HelpController@out2xls');
-//Route::get('/help/rules', 'HelpController@rules');
 
 Route::get('/edittable/EditICType', 'EditTable\EditICType@index');
 Route::get('/edittable/EditActiveeleType', 'EditTable\EditActiveeleType@index');

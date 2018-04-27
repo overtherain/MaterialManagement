@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\SendMailCommand::class, //测试发邮件脚本
+        
     ];
 
     /**
