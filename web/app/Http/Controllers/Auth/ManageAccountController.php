@@ -71,7 +71,7 @@ class ManageAccountController extends Controller
         $userName = $request->input('deleteName');
         
         if($userName == 'admin'){
-            return redirect()->back()->withErrors(['username' => "can't delete admin account!"])->withInput();
+            return redirect()->back()->withErrors(['name' => "can't delete admin account!"])->withInput();
         }else{
             $delRst = DB::delete('DELETE FROM users WHERE id = ?',array($userId));
             $msg = 'delete user id:'.$userId.' name: '.$userName.' result:'.$delRst;
