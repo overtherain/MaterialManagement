@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $materialitems = DB::table('materialitems')->paginate(50);
+        $materialitems = DB::table('materialitems')->latest('id')->paginate(50);
         return view('home',['materialitems' => $materialitems]);
     }
 }

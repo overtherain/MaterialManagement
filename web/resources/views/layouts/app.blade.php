@@ -12,12 +12,12 @@
 
     <!-- Styles -->
     <!--<link href="/css/app.css" rel="stylesheet">-->
-    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script src="/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     
@@ -45,8 +45,7 @@
                     <ul class="nav navbar-nav">
                         @if (Auth::guest())
                             &nbsp;
-                        @elseif(Auth::user()->name == 'admin')
-                            <li><a href="{{ url('/home') }}">已申请物料信息</a></li>
+                        @elseif(Auth::user()->permission == '255')
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" 
                                             data-toggle="dropdown" 
@@ -57,30 +56,36 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/edittable/edittable1') }}">表项编辑1</a>
-                                        <a href="{{ url('/edittable/edittable2') }}">表项编辑2</a>
-                                        <a href="{{ url('/edittable/edittable3') }}">表项编辑3</a>
-                                        <a href="{{ url('/edittable/edittable4') }}">表项编辑4</a>
-                                        <a href="{{ url('/edittable/edittable5') }}">表项编辑5</a>
+                                        <a href="{{ url('/edittable/EditICType') }}">编辑IC类型 </a>
+                                        <a href="{{ url('/edittable/EditActiveeleType') }}">编辑主动电子件类型</a>
+                                        <a href="{{ url('/edittable/EditCompany') }}">编辑厂商表</a>
+                                        <a href="{{ url('/edittable/EditProductType') }}">编辑机种代码</a>
+                                        <a href="{{ url('/edittable/EditMMT') }}">编辑屏蔽罩类型</a>
+                                        <a href="{{ url('/edittable/EditColor') }}">编辑颜色码</a>
+                                        <a href="{{ url('/edittable/EditCustomer') }}">编辑客户码</a>
                                     </li>
                                 </ul>
                             </li>
                             <li><a href="{{ url('/addid') }}">物料编号申请</a></li>
                             
                         @else
-                            <li><a href="{{ url('/home') }}">已申请物料信息</a></li>
                             <li><a href="{{ url('/addid') }}">物料编号申请</a></li>
                         @endif
-                            <!--<li><a href="{{ url('/help') }}">帮助</a></li>-->
+                        
+                        @if(Auth::guest())
+                            &nbsp;
+                        @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">帮助<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/help') }}">帮助1</a>
-                                        <a href="{{ url('/help') }}">帮助2</a>
+                                        <a href="{{ url('/help/out2xls') }}">导出数据到excel</a>
+                                        <a href="rules/rules-blephone-20180426.htm" target="_blank">编码规则</a>
+                                        {{--<a href="{{ url('/help') }}">帮助</a>--}}
                                     </li>
                                 </ul>
                             </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -91,12 +96,12 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <ul class="nav navbar-nav">
-                                @if(Auth::user()->name == 'admin')
-                                    <li><a href="{{ url('/search') }}">查找</a></li>
+                                <li><a href="{{ url('/search') }}">查找</a></li>
+                                @if(Auth::user()->permission == '255')
                                     <li><a href="{{ url('/delete') }}">删除</a></li>
+                                    <li><a href="{{ url('/manage') }}">用户管理</a></li>
                                 @else
                                     <li></li>
-                                    <li><a href="{{ url('/search') }}">查找</a></li>
                                 @endif
                             </ul>
                             <li class="dropdown">
@@ -106,10 +111,12 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                            Logout
+                                        <a href="{{ url('/reset') }}">
+                                            修改密码
                                         </a>
-
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                            登出
+                                        </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>

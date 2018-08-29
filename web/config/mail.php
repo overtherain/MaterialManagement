@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 994),
+    'port' => env('MAIL_PORT', '25'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'zhangshaobin@blephone.com'),
-        'name' => env('MAIL_FROM_NAME', 'zhangshaobin'),
+        'address' => env('MAIL_FROM_ADDRESS', 'mantis@chongqingroad.com'),
+        'name' => env('MAIL_FROM_NAME', 'MaterialOS<mantis@chongqingroad.com>'),
     ],
 
     /*
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+    'encryption' => env('MAIL_ENCRYPTION', 'null'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('zhangshaobin@blephone.com'),
+    'username' => env('mantis@chongqingroad.com'),
 
-    'password' => env('blf@162534'),
+    'password' => env('DFSL@162534'),
 
     /*
     |--------------------------------------------------------------------------
@@ -99,8 +99,8 @@ return [
     |
     */
 
-    'sendmail' => '/usr/sbin/sendmail -bs',
-    //'sendmail' => "E:/sendmail/sendmail.exe -bs",
+    //'sendmail' => '/usr/sbin/sendmail -bs',
+    'sendmail' => 'E:\\sendmail\\sendmail.exe -t -i -f',
 
     /*
     |--------------------------------------------------------------------------

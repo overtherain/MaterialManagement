@@ -21,22 +21,45 @@ Route::get('/now', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/manage', 'Auth\ManageAccountController@index');
+Route::get('/reset', 'Auth\ManageAccountController@resetShow');
+Route::post('/reset/done', 'Auth\ManageAccountController@resetPwdDone')->name('reset.done');
+Route::post('/manage/reset', 'Auth\ManageAccountController@manageReset')->name('manage.reset');
+Route::post('/manage/delete', 'Auth\ManageAccountController@manageDel')->name('manage.delete');
+
 
 Route::get('/addid', 'AddIdController@index');
+Route::get('/addid/getid1', 'AddIdController@getid1');
+Route::get('/addid/getid2', 'AddIdController@getid2');
+Route::get('/addid/getid3', 'AddIdController@getid3');
+Route::post('/addid/store', 'AddIdController@store')->name('addid.store');
 
 Route::get('/help', 'HelpController@index');
+Route::get('/help/out2xls', 'HelpController@out2xls');
 
-Route::get('/edittable/edittable1', 'EditTable\EditTableController1@index');
+Route::get('/edittable/EditICType', 'EditTable\EditICType@index');
+Route::get('/edittable/EditActiveeleType', 'EditTable\EditActiveeleType@index');
+Route::get('/edittable/EditCompany', 'EditTable\EditCompany@index');
+Route::get('/edittable/EditProductType', 'EditTable\EditProductType@index');
+Route::get('/edittable/EditMMT', 'EditTable\EditMMT@index');
+Route::get('/edittable/EditColor', 'EditTable\EditColor@index');
+Route::get('/edittable/EditCustomer', 'EditTable\EditCustomer@index');
 
-Route::get('/edittable/edittable2', 'EditTable\EditTableController2@index');
+Route::post('/edittable/EditICType/store', 'EditTable\EditICType@store')->name('EditICType.store');
+Route::post('/edittable/EditActiveeleType/store', 'EditTable\EditActiveeleType@store')->name('EditActiveeleType.store');
+Route::post('/edittable/EditCompany/store', 'EditTable\EditCompany@store')->name('EditCompany.store');
+Route::post('/edittable/EditProductType/store', 'EditTable\EditProductType@store')->name('EditProductType.store');
+Route::post('/edittable/EditMMT/store', 'EditTable\EditMMT@store')->name('EditMMT.store');
+Route::post('/edittable/EditColor/store', 'EditTable\EditColor@store')->name('EditColor.store');
+Route::post('/edittable/EditCustomer/store', 'EditTable\EditCustomer@store')->name('EditCustomer.store');
 
-Route::get('/edittable/edittable3', 'EditTable\EditTableController1@index');
+Route::get('/search', 'SearchController@index');
+Route::post('/search/result', 'searchController@showresult')->name('search.result');
 
-Route::get('/edittable/edittable4', 'EditTable\EditTableController1@index');
+Route::get('/delete', 'DeleteController@index');
+Route::post('/delete/store', 'DeleteController@store')->name('delete.store');
 
-Route::get('/edittable/edittable5', 'EditTable\EditTableController1@index');
+Route::get('/message', 'Message@index');
 
-Route::get('/search', 'searchController@index');
-
-Route::get('/delete', 'deleteController@index');
