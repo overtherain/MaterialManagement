@@ -8,6 +8,10 @@
                 <div class="panel-heading">账号管理</div>
 
                 <div class="panel-body">
+                    <div class="controls col-sm-2" style="float:right">
+                        <a id="add" type="button" class="btn btn-primary btn-block" onclick="addItem()">添加账号</a>
+                    </div>
+                    <br></br>
                     <table class="table table-hover table-striped table-bordered table-condensed" style="word-break:break-all; word-wrap:break-all;">
                         <thead>
                             <tr>
@@ -69,13 +73,86 @@
                             @endif
                         <tbody>
                     </table>
+                    <!-- 添加标签页面 -->
+                    <div id="addForm" class="modal" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" onclick="closeAddForm()">x</button>
+                                    <h2 class="text-center text-primary">添加选项</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form col-md-12" role="form" method="POST" action="{{ route('EditColor.store') }}" >
+                                        {{ csrf_field() }}
+                                        <input id="addSubmit" name="addSubmit" type="text" class="form-control input-md hide" value="" readonly>
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <a style="text">Name</a>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <input id="addItemName" name="addItemName" type="text" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <a style="text">Email</a>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <input id="addItemValue" name="addItemValue" type="text" class="form-control" value="" maxlength="1">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <a style="text">Password</a>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <input id="addItemValue" name="addItemValue" type="text" class="form-control" value="" maxlength="1">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <a style="text">Confirm Password</a>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <input id="addItemValue" name="addItemValue" type="text" class="form-control" value="" maxlength="1">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-xs-2">
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button id="addBtn" type="submit" class="btn btn-primary btn-md btn-block" onclick="return checkAddItems();">添加</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button id="cancelAddBtn" class="btn btn-primary btn-md btn-block" onclick="return closeAddForm();">取消</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
+function addItem(){
+    $('#addForm').fadeIn();
+}
 
+function closeAddForm(){
+    $('#addForm').fadeOut();
+    document.getElementById("addSubmit").value = '0';
+    return false;
+}
 
 </script>
 @endsection
