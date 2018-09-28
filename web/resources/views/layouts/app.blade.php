@@ -45,7 +45,7 @@
                     <ul class="nav navbar-nav">
                         @if (Auth::guest())
                             &nbsp;
-                        @elseif(Auth::user()->permission == '255')
+                        @elseif((Auth::user()->permission == '255') || (Auth::user()->permission == '2'))
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" 
                                             data-toggle="dropdown" 
@@ -100,6 +100,8 @@
                                 @if(Auth::user()->permission == '255')
                                     <li><a href="{{ url('/delete') }}">删除</a></li>
                                     <li><a href="{{ url('/manage') }}">用户管理</a></li>
+                                @elseif(Auth::user()->permission == '2')
+                                    <li><a href="{{ url('/delete') }}">删除</a></li>
                                 @else
                                     <li></li>
                                 @endif
