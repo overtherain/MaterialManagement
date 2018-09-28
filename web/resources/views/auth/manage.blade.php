@@ -51,12 +51,12 @@
                                     <form class="form col-md-5" role="form" method="POST" action="{{ route('manage.delete') }}">
                                         {{ csrf_field() }}
                                         <div class="row">
-                                            <input id="deleteID" name="deleteID" type="text" class="form-control input-md hide" value="{{$user->id}}" readonly>
-                                            <input id="deleteName" name="deleteName" type="text" class="form-control input-md hide" value="{{$user->name}}" readonly>
-                                            @if($user->name == 'admin')
+                                                <input id="deleteID" name="deleteID" type="text" class="form-control input-md hide" value="{{$user->id}}" readonly>
+                                                <input id="deleteName" name="deleteName" type="text" class="form-control input-md hide" value="{{$user->name}}" readonly>
+                                            @if($user->name == 'administrator')
                                                 
                                             @else
-                                            <button id="deleteBtn" name="deleteBtn" type="submit" class="btn btn-primary">删除账号</button>
+                                                <button id="deleteBtn" name="deleteBtn" type="submit" class="btn btn-primary">删除账号</button>
                                             @endif
                                         </div>
                                     </form>
