@@ -36,7 +36,9 @@ class helpController extends Controller
                 'AddTime' => $item->AddTime,
             );
         }
-        Excel::create('Materialitems',function($excel) use ($cellData){
+        $day = date("Y-m-d_H-m-s");
+        //dd($day);
+        Excel::create('Materialitems'.$day,function($excel) use ($cellData){
             $excel->sheet('material', function($sheet) use ($cellData){
                 $sheet->fromArray($cellData);
             });
